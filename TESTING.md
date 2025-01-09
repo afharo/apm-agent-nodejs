@@ -28,7 +28,7 @@ npm run lint                  # or 'make check' if you are a Makefile kind of pe
 
 npm test                      # run test services and tests in Docker
 
-docker-compose -f test/docker-compose.yml config --services  # list test services
+docker compose -f test/docker-compose.yml config --services  # list test services
 npm run docker:start          # start all test services
 npm run docker:start redis    # start one or more test services
 npm run docker:stop           # stop all test services
@@ -102,6 +102,10 @@ serially installs each version and runs the relevant test files.
 To run TAV tests for one or a few modules:
 
     TAV=redis,ioredis npm run test:tav
+
+Or, to run TAV tests for a module in Docker as they are run in CI:
+
+    .ci/scripts/test.sh -b "release" -t "ioredis" "18"
 
 TAV tests are run in CI on commits to the "main" branch, as controlled by
 "[tav.yml](./.github/workflows/tav.yml)". See the [CI](#ci) section below.
